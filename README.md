@@ -15,7 +15,6 @@
 
 🏆 **Certifications:** AWS SAA-C03 | AZ-104 | AZ-400 | CKAD
 
-🔗 **LinkedIn:** [linkedin.com/in/erayushharsh](https://linkedin.com/in/erayushharsh)
 📧 **Email:** harsh4ayush85@gmail.com
 
 ---
