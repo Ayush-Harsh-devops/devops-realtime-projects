@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment {
+        AWS_REGION = 'us-east-1'
+        ECR_REGISTRY = 'your-aws-account-id.dkr.ecr.us-east-1.amazonaws.com'
+        IMAGE_NAME = 'devops-app'
+        IMAGE_TAG = "${BUILD_NUMBER}"
+    }
+    stages {
+        stage(' Checkout') {
+            steps { checkout scm }
+        }
+        stage(' SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'sonar-scanner -Dsonar.projectKey=devops-app'
+                }
+            }
+        }
+        stage(' Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage(' Trivy Scan') {
+            steps {
+                sh 'trivy fs --severity CRITICAL,HIGH --exit-code 1 .'
+            }
+        }
+        stage(' Docker Build & Push') {
+            steps {
+                withAWS(region: "${AWS_REGION}", credentials: 'aws-creds') {
+                    sh '''
+                        aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                        docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${ECR_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+                        docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+                    '''
+                }
+            }
+        }
+        stage('ArgoCD GitOps Deploy') {
+            steps {
+                sh '''
+                    sed -i "s|IMAGE_TAG|${IMAGE_TAG}|g" argocd/deployment.yaml
+                    git config user.email "ci@devops.com"
+                    git config user.name "Jenkins CI"
+                    git add argocd/deployment.yaml
+                    git commit -m "ci: update image tag to ${IMAGE_TAG}"
+                    git push origin main
+                '''
+            }
+        }
+    }
+    post {
+        success { echo ' Pipeline SUCCESS!' }
+        failure { echo ' Pipeline FAILED!' }
+    }
+}
