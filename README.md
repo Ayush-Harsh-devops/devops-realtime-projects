@@ -176,9 +176,6 @@ Logs: Promtail → Loki → Grafana
 | Certification | Provider | Badge |
 |--------------|----------|-------|
 | AWS Solutions Architect Associate | Amazon Web Services | SAA-C03 |
-| Azure Administrator | Microsoft | AZ-104 |
-| Azure DevOps Engineer Expert | Microsoft | AZ-400 |
-| Kubernetes Application Developer | CNCF | CKAD |
 
 ---
 
