@@ -5,7 +5,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine AS production
+FROM nginx:alpine AS production 
 RUN addgroup -g 1001 -S nginx-group && adduser -S nginx-user -u 1001
 COPY --from=builder /app/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
