@@ -51,7 +51,7 @@ ArgoCD (GitOps) → Deploy to AWS EKS
 
 ## 🔐 Secrets Required 
 
-AWS_ACCESS_KEY_ID      → AWS credentials
+AWS_ACCESS_KEY_ID      → AWS credentials 
 AWS_SECRET_ACCESS_KEY  → AWS credentials
 SONAR_TOKEN            → SonarCloud token
 
