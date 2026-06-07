@@ -49,7 +49,7 @@ ArgoCD (GitOps) → Deploy to AWS EKS
 - ✅ Health checks + Readiness probes
 - ✅ Non-root Docker user (security best practice)
 
-## 🔐 Secrets Required
+## 🔐 Secrets Required 
 
 AWS_ACCESS_KEY_ID      → AWS credentials
 AWS_SECRET_ACCESS_KEY  → AWS credentials
