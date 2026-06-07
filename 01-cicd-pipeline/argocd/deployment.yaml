@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: devops-app
   namespace: devops-app
-spec:
+spec: 
   replicas: 3
   selector:
     matchLabels:
