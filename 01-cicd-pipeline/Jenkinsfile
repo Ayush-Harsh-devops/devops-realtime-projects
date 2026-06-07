@@ -49,7 +49,7 @@ pipeline {
                     git config user.name "Jenkins CI"
                     git add argocd/deployment.yaml
                     git commit -m "ci: update image tag to ${IMAGE_TAG}"
-                    git push origin main
+                    git push origin main 
                 '''
             }
         }
