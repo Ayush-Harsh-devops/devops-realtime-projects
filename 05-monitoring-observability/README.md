@@ -45,7 +45,7 @@ docker-compose up -d
 # Prometheus:   http://localhost:9090
 # Grafana:      http://localhost:3000
 # Alertmanager: http://localhost:9093
-# Loki:         http://localhost:3100
+# Loki:         http://localhost:3100 
 ```
 
 ## 👨‍💻 Author
