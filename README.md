@@ -15,7 +15,7 @@
 
 🏆 **Certifications:** AWS SAA-C03 | AZ-104 | AZ-400 | CKAD
 
-📧 **Email:** harsh4ayush85@gmail.com
+📧 **Email:** harsh4ayush85@gmail.com 
 
 ---
 
