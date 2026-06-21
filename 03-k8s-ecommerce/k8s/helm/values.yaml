@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: your-ecr-url/ecommerce-app 
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent 
   tag: "latest"
 
 service:
